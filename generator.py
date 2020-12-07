@@ -9,7 +9,7 @@ from utils import downsample, upsample
 
 OUTPUT_CHANNELS = 3
 
-def build_generator():
+def Generator():
 
     input_layer = layers.Input(shape=[200,200,3])
 
@@ -31,7 +31,7 @@ def build_generator():
         downsample(400, 4),
     ]
 
-    # UPSAMPLE LAYERS
+    # UPSAMPLE LAYERS/data
 
     up_stack = [
         upsample(400, 4, apply_dropout=True),
