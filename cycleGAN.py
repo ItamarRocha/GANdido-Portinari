@@ -15,7 +15,7 @@ class CycleGAN(keras.Model):
         self.disc = discriminator
         self.lambda_cycle = lambda_cycle
 
-    def compile(self, gandido_gen_optimizer, gandido_disc_optimizer,gen_optimizer, disc_optimizer, gen_loss_fn, cycle_loss, identity_loss):
+    def compile(self, gandido_gen_optimizer, gandido_disc_optimizer,gen_optimizer, disc_optimizer, gen_loss_fn, disc_loss_fn, cycle_loss, identity_loss):
 
         super(CycleGAN, self).compile()
         self.gandido_gen_optimizer = gandido_gen_optimizer
@@ -23,6 +23,7 @@ class CycleGAN(keras.Model):
         self.gen_optimizer = gen_optimizer
         self.disc_optimizer = disc_optimizer
         self.gen_loss_fn = gen_loss_fn
+        self.disc_loss_fn = disc_loss_fn
         self.cycle_loss_fn = cycle_loss
         self.identity_loss_fn = identity_loss
 
@@ -87,4 +88,3 @@ class CycleGAN(keras.Model):
         self.disc_optimizer.apply_gradients(zip(photo_discriminator_gradients, self.disc.trainable_variables))
 
         return {"gandido_gen_loss": total_gandido_gen_loss, "photo_gen_loss": total_photo_gen_loss, "gandido_disc_loss": gandido_disc_loss, "photo_disc_loss": photo_disc_loss}
-
