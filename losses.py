@@ -11,7 +11,7 @@ def discriminator_loss(real, generated):
 
 
 def generator_loss(generated):
-    return tf.keras.losses.BinaryCrossentropy(from_logits=True, reduction=tf.keras.losses.Reduction.NONE)(tf.ones_like(generated), generated)
+        return tf.keras.losses.BinaryCrossentropy(from_logits=True, reduction=tf.keras.losses.Reduction.NONE)(tf.ones_like(generated), generated)
     
 def calc_cycle_loss(real_image, cycled_image, LAMBDA):
         loss1 = tf.reduce_mean(tf.abs(real_image - cycled_image))

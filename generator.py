@@ -10,51 +10,40 @@ from utils import downsample, upsample
 OUTPUT_CHANNELS = 3
 
 def Generator():
+    inputs = layers.Input(shape=[256,256,3])
 
-    input_layer = layers.Input(shape=[200,200,3])
-
-
-    # bs = batch_size
-
-
-    # DOWNSAMPLE LAYERS
-
+    # bs = batch size
     down_stack = [
-
-        downsample(50, 4, apply_instancenorm=False),
-        downsample(100, 4),
-        downsample(200, 4),
-        downsample(400, 4),
-        downsample(400, 4),
-        downsample(400, 4),
-        downsample(400, 4),
-        downsample(400, 4),
+        downsample(64, 4, apply_instancenorm=False), # (bs, 128, 128, 64)
+        downsample(128, 4), # (bs, 64, 64, 128)
+        downsample(256, 4), # (bs, 32, 32, 256)
+        downsample(512, 4), # (bs, 16, 16, 512)
+        downsample(512, 4), # (bs, 8, 8, 512)
+        downsample(512, 4), # (bs, 4, 4, 512)
+        downsample(512, 4), # (bs, 2, 2, 512)
+        downsample(512, 4), # (bs, 1, 1, 512)
     ]
-
-    # UPSAMPLE LAYERS/data
 
     up_stack = [
-        upsample(400, 4, apply_dropout=True),
-        upsample(400, 4, apply_dropout=True),
-        upsample(400, 4, apply_dropout=True),
-        upsample(400, 4),
-        upsample(200, 4),
-        upsample(100, 4),
-        upsample(50, 4),
+        upsample(512, 4, apply_dropout=True), # (bs, 2, 2, 1024)
+        upsample(512, 4, apply_dropout=True), # (bs, 4, 4, 1024)
+        upsample(512, 4, apply_dropout=True), # (bs, 8, 8, 1024)
+        upsample(512, 4), # (bs, 16, 16, 1024)
+        upsample(256, 4), # (bs, 32, 32, 512)
+        upsample(128, 4), # (bs, 64, 64, 256)
+        upsample(64, 4), # (bs, 128, 128, 128)
     ]
-
-
-    # Outputs
 
     initializer = tf.random_normal_initializer(0., 0.02)
     last = layers.Conv2DTranspose(OUTPUT_CHANNELS, 4,
                                   strides=2,
                                   padding='same',
                                   kernel_initializer=initializer,
-                                  activation='tanh')
+                                  activation='tanh') # (bs, 256, 256, 3)
 
-    x = input_layer
+    x = inputs
 
+    # Downsampling through the model
     skips = []
     for down in down_stack:
         x = down(x)
@@ -62,11 +51,11 @@ def Generator():
 
     skips = reversed(skips[:-1])
 
+    # Upsampling and establishing the skip connections
     for up, skip in zip(up_stack, skips):
         x = up(x)
         x = layers.Concatenate()([x, skip])
 
     x = last(x)
 
-    model = keras.Model(inputs = input_layer, outputs = x)
-    return model
+    return keras.Model(inputs=inputs, outputs=x)

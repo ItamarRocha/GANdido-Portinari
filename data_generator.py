@@ -2,7 +2,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import tensorflow as tf
 AUTOTUNE = tf.data.experimental.AUTOTUNE
 
-IMAGE_SIZE = [200,200]
+IMAGE_SIZE = [256,256]
 
 def decode_image(image):
     image = tf.image.decode_jpeg(image, channels=3)
