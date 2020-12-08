@@ -46,8 +46,7 @@ cycle_gan_model.compile(
     identity_loss = identity_loss
 )
 
-
-
+AUTOTUNE = tf.data.experimental.AUTOTUNE
 
 GANDIDO_FILENAMES = tf.io.gfile.glob('gandido/*.jpg')
 print('Gandido TFRecord Files:', len(GANDIDO_FILENAMES))
@@ -55,11 +54,15 @@ print('Gandido TFRecord Files:', len(GANDIDO_FILENAMES))
 PHOTO_FILENAMES = tf.io.gfile.glob('photo/*.jpg')
 print('Photo TFRecord Files:', len(PHOTO_FILENAMES))
 
-gandido_ds = load_dataset(GANDIDO_FILENAMES, labeled=True).batch(1)
-photo_ds = load_dataset(PHOTO_FILENAMES, labeled=True).batch(1)
+
+candido_datagen = tf.data.Dataset.list_files("./gandido/*.jpeg")
+photo_datagen = tf.data.Dataset.list_files("./photo/*.jpeg")
+
+candido_ds = candido_datagen.map(lambda x: process(x))
+photo_ds = photo_datagen.map(lambda x: process(x))
 
 cycle_gan_model.fit(
-    tf.data.Dataset.zip((gandido_ds, photo_ds)),
+    tf.data.Dataset.zip((candido_ds, photo_ds)),
     epochs=25
 )
 

@@ -14,7 +14,7 @@ def downsample(filters, size, apply_instancenorm = True):
                 kernel_initializer=initializer, use_bias=False))
 
     if apply_instancenorm:
-        result.add(tfa.layer.InstanceNormalization(gamma_initializer=gamma_init))
+        result.add(tfa.layers.InstanceNormalization(gamma_initializer=gamma_init))
 
     result.add(layers.LeakyReLU())
 
