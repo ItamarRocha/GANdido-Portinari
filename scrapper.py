@@ -9,7 +9,7 @@ import os
 
 def download_and_save():
     
-    for i in range(45,5197):
+    for i in range(1,5197):
         link = f"http://www.portinari.org.br/img/sections/collection/artwork/200/{i}.jpg"
         try: 
             urllib.request.urlretrieve(link, f'{os.getcwd()}/data/{i}.jpg')
