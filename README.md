@@ -1,7 +1,8 @@
 [![author](https://img.shields.io/badge/author-felipehonorato1-purple.svg)](https://github.com/felipehonorato1)
 [![author](https://img.shields.io/badge/author-ItamarRocha-black.svg)](https://github.com/ItamarRocha) 
 [![author](https://img.shields.io/badge/author-joallace-blue.svg)](https://github.com/joallace) 
-[![author](https://img.shields.io/badge/author-jpvt-yellow.svg)](https://github.com/jpvt)  
+[![author](https://img.shields.io/badge/author-jpvt-yellow.svg)](https://github.com/jpvt)
+[![author](https://img.shields.io/badge/author-sheywesk-red.svg)](https://github.com/sheywesk)  
 [![](https://img.shields.io/badge/python-3.7+-cyan.svg)](https://www.python.org/downloads/release/python-365/)
 
 # GANdido Portinari
