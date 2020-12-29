@@ -15,6 +15,7 @@ In this project we trained a CycleGan to reproduce Candido's Portinari style int
 - [Who was Candido Portinari?](#who-was-candido-portinari?)
 - [Data](#data)
 - [CycleGan](#cyclegan)
+- [Results](#results)
 - [Clone](#clone)
 - [Authors](#authors)
 
@@ -40,6 +41,19 @@ One of his most famous paintings is **Retirantes (1944)**
 
 All the data from Candido Portinari work used in this project was collected from [Projeto Portinari](http://www.portinari.org.br/) using a simple download script after discovering the patterns of storage used by the website.
 
+---
+## Results
+| Input                                   |                      Output     |
+|:---------------------------------------:|:-------------------------------:|
+| ![](examples/portinari_generator/prediction_4_original.jpg) |  ![](examples/portinari_generator/prediction_4.jpg) |
+| ![](examples/portinari_generator/prediction_5_original.jpg) |  ![](examples/portinari_generator/prediction_5.jpg) |
+| ![](examples/portinari_generator/prediction_13_original.jpg)|  ![](examples/portinari_generator/prediction_13.jpg)|
+| ![](examples/portinari_generator/prediction_17_original.jpg)|  ![](examples/portinari_generator/prediction_17.jpg)|
+| ![](examples/portinari_generator/prediction_18_original.jpg)|  ![](examples/portinari_generator/prediction_18.jpg)|
+| ![](examples/portinari_generator/prediction_35_original.jpg)|  ![](examples/portinari_generator/prediction_35.jpg)|
+| ![](examples/portinari_generator/prediction_45_original.jpg)|  ![](examples/portinari_generator/prediction_45.jpg)|
+| ![](examples/portinari_generator/prediction_47_original.jpg)|  ![](examples/portinari_generator/prediction_47.jpg)|
+| ![](examples/portinari_generator/prediction_48_original.jpg)|  ![](examples/portinari_generator/prediction_48.jpg)|
 ---
 
 ## Clone
